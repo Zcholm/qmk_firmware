@@ -1,4 +1,6 @@
 /*
+This is the c configuration file for the keymap
+
 Copyright 2012 Jun Wako <wakojun@gmail.com>
 Copyright 2015 Jack Humbert
 
@@ -18,26 +20,32 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "config_common.h"
+/* Use I2C or Serial, not both */
+#define USE_SERIAL
+// #define USE_I2C
 
-/* USB Device descriptor parameter */
-#define PRODUCT_ID      0x3436
-#define DEVICE_VER      0x0001
+/* Select hand configuration */
 
-/* key matrix size */
-// Rows are doubled-up
-#define MATRIX_ROWS 10
-#define MATRIX_COLS 6
+//#define MASTER_LEFT
+//#define MASTER_RIGHT
+//#define EE_HANDS
 
-// row-driven
-#define MATRIX_ROW_PINS { F7, B1, B3, B2, B6 }
-#define MATRIX_ROW_PINS_RIGHT { B6, B2, B3, B1, F7 }
-#define MATRIX_COL_PINS { D4, C6, D7, E6, B4, B5 }
+#define SPLIT_HAND_PIN F6
 
-/* COL2ROW or ROW2COL */
-#define DIODE_DIRECTION COL2ROW
+/* Use an unused intersection to decide handedness */
+//#define SPLIT_HAND_MATRIX_GRID B5, F7
 
-// WS2812 RGB LED strip input and number of LEDs
-#define RGB_DI_PIN D3
-#define RGBLED_NUM 0
+/* Left hand has no diode: */
+#define SPLIT_HAND_MATRIX_GRID_LOW_IS_RIGH
+
+
+#define SPLIT_USB_DETECT
+
+#define TAPPING_TERM 200
+
+#define PERMISSIVE_HOLD
+#define IGNORE_MOD_TAP_INTERRUPT
+
+/* CTRL overrides shift+esc as grave: (Fixes ctr+shift+esc) */
+#define GRAVE_ESC_CTRL_OVERRIDE
 
